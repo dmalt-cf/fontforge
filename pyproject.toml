@@ -18,6 +18,12 @@ cmake.args = [
     "-DCMAKE_BUILD_TYPE=Release",
     # "-DPYHOOK_INSTALL_DIR=."
 ]
-# wheel.packages = ["lib/fontforge"]  # Install from root directory
-# wheel.packages = ["site-packages"]
 wheel.exclude = ["bin", "fontforge.libs", "share"]
+
+[tool.cibuildwheel]
+before-all = "uname -a"
+build-verbosity = 1
+skip = ["cp36-*", "cp37-*", "cp38-*", "cp310-*", "*-win32", "*-manylinux_i686"]
+test-command = "python -c \"import fontforge; print(fontforge.__version__)\""
+test-skip = "cp38-macosx_arm64"
+
