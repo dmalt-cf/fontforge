@@ -1,7 +1,5 @@
 name: Build
-
 on: [push, pull_request]
-
 jobs:
   build_wheels:
     name: Build wheels on ${{ matrix.os }}
@@ -9,20 +7,16 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04]
-
     steps:
       - uses: actions/checkout@v3
-
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.13.1
-        # env:
-        #   CIBW_SOME_OPTION: value
-        #    ...
-        # with:
-        #   package-dir: .
-        #   output-dir: wheelhouse
-        #   config-file: "{package}/pyproject.toml"
-
+        env:
+          CIBW_MANYLINUX_X86_64_IMAGE: python:3.10-slim
+          CIBW_BEFORE_ALL_LINUX: >
+            apt-get update && apt-get install -y cmake libxml2-dev libjpeg-dev libtiff-dev 
+            libpng-dev libgif-dev libfreetype6-dev libspiro-dev
+            libuninameslist-dev gettext
       - uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl
