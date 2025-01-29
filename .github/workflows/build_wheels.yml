@@ -14,12 +14,9 @@ jobs:
         env:
           CIBW_BUILD: "cp310-*"
           CIBW_BEFORE_ALL_LINUX: >
-              yum install -y cmake libxml2-devel libjpeg-devel libtiff-devel 
-              libpng-devel giflib-devel freetype-devel libspiro-devel
-              libuninameslist-devel gettext-devel &&
-              ls -l /usr/include/freetype2 &&
-              pkg-config --libs freetype2 &&
-              pkg-config --cflags freetype2
+            yum install -y cmake libxml2-devel libjpeg-devel libtiff-devel 
+            libpng-devel giflib-devel freetype-devel libspiro-devel
+            libuninameslist-devel gettext-devel
       - uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl

@@ -17,6 +17,8 @@ cmake.args = [
     "-DENABLE_PYTHON_SCRIPTING=ON",
     "-DCMAKE_BUILD_TYPE=Release",
     # "-DPYHOOK_INSTALL_DIR=."
+    "-DFREETYPE_INCLUDE_DIRS=/usr/include/freetype2",
+    "-DFREETYPE_LIBRARIES=/usr/lib64/libfreetype.so"
 ]
 wheel.exclude = ["bin", "fontforge.libs", "share"]
 
