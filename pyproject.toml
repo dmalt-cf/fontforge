@@ -1,0 +1,23 @@
+[build-system]
+requires = ["scikit-build-core>=0.8.0"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "fontforge"
+version = "20230101"
+requires-python = ">=3.8"
+
+[tool.scikit-build]
+cmake.version = ">=3.5"
+cmake.args = [
+    "-DENABLE_GUI=OFF",
+    "-DENABLE_FONTFORGE_EXTRAS=ON",
+    "-DBUILD_SHARED_LIBS=ON",
+    "-DENABLE_PYTHON_EXTENSION=ON",
+    "-DENABLE_PYTHON_SCRIPTING=ON",
+    "-DCMAKE_BUILD_TYPE=Release",
+    # "-DPYHOOK_INSTALL_DIR=."
+]
+# wheel.packages = ["lib/fontforge"]  # Install from root directory
+# wheel.packages = ["site-packages"]
+wheel.exclude = ["bin", "fontforge.libs", "share"]
