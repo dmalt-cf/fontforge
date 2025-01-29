@@ -23,6 +23,7 @@ wheel.exclude = ["bin", "fontforge.libs", "share"]
 [tool.cibuildwheel]
 before-all = "uname -a"
 build-verbosity = 1
-skip = ["cp36-*", "cp37-*", "cp38-*", "cp39-*", "*-win32", "*-manylinux_i686"]
+# skip = ["cp36-*", "cp37-*", "cp38-*", "cp39-*", "*-win32", "*-manylinux_i686"]
+build = ["cp310-*"]
 test-command = "python -c \"import fontforge; print(fontforge.__version__)\""
 
