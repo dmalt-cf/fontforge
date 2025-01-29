@@ -17,7 +17,7 @@ jobs:
             sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* &&
             sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* &&
             yum -y update &&
-            yum install -y cmake libxml2-devel libjpeg-devel libtiff-devel 
+            yum install -y cmake python3-devel libxml2-devel libjpeg-devel libtiff-devel 
             libpng-devel giflib-devel freetype-devel libspiro-devel
             libuninameslist-devel gettext-devel
       - uses: actions/upload-artifact@v3
