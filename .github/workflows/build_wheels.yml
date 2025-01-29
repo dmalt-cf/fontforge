@@ -13,13 +13,22 @@ jobs:
         uses: pypa/cibuildwheel@v2.13.1
         env:
           CIBW_BUILD: "cp310-*"
+          CIBW_BUILD_VERBOSITY: 3
           CIBW_BEFORE_ALL_LINUX: >
             sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-* &&
             sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-* &&
             yum -y update &&
-            yum install -y cmake python3-devel libxml2-devel libjpeg-devel libtiff-devel 
-            libpng-devel giflib-devel freetype-devel libspiro-devel
-            libuninameslist-devel gettext-devel
+            yum install -y cmake \
+                python3-devel \
+                libxml2-devel \
+                libjpeg-devel \
+                libtiff-devel \
+                libpng-devel \
+                giflib-devel \
+                freetype-devel \
+                libspiro-devel \
+                libuninameslist-devel \
+                gettext-devel
       - uses: actions/upload-artifact@v3
         with:
           path: ./wheelhouse/*.whl
